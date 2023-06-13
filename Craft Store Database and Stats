@@ -1,0 +1,34 @@
+--Create a Craft Store database
+
+CREATE TABLE store (id INTEGER PRIMARY KEY, department TEXT, item TEXT, quantity INTEGER, price REAL);
+INSERT INTO store VALUES(1, "Papergoods", "heavy cardstock", 25, .99);
+INSERT INTO store VALUES(2, "Stamps", "ink", 10, 2.99);
+INSERT INTO store VALUES(3, "Stamps", "acrylic blocks", 5, 5.99);
+INSERT INTO store VALUES(4, "Fabric", "quarter block", 2, 2.99);
+INSERT INTO store VALUES(5, "Fabric", "scissors", 1, 1.99);
+INSERT INTO store VALUES(6, "Resin", "molds-large", 3, 3.99);
+INSERT INTO store VALUES(7,"Resin", "molds-medium", 2, 1.99);
+INSERT INTO store VALUES(8, "Resin", "molds-small", 4, .99);
+INSERT INTO store VALUES(9, "Paints", "brushes", 12, .99);
+INSERT INTO store VALUES(10, "Paints", "sponges", 7, 1.99);
+INSERT INTO store VALUES(11, "Paints", "pallets", 5, .99);
+INSERT INTO store VALUES(12, "Metal Stamping", "hammer", 7, 2.99);
+INSERT INTO store VALUES(13, "Stamps", "alcohol",1,2.99);
+INSERT INTO store VALUES(14, "Stamps", "blotters", 4, 2.99);
+INSERT INTO store VALUES(15, "Resin", "torch", 1, 10.99);
+
+--display the database ordered by price.
+SELECT * FROM store ORDER BY price asc;
+
+--how many items per price point grouped by department?
+SELECT department, price, SUM(quantity) FROM store GROUP BY department;
+
+--what is the average price by department?
+SELECT AVG(price) FROM store;
+
+--what is the most expensive item and corresponding department?
+SELECT department, item, MAX(price) FROM store;
+
+--what is the least expensive item and corresonding department?
+SELECT department, item, MIN(price) FROM store;
+
