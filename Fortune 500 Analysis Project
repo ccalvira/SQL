@@ -1,0 +1,63 @@
+SELECT *
+FROM fortune_companies
+ORDER BY paid_time_off_days;
+
+SELECT industry, company_name, employees, avg_employee_tenure
+FROM fortune_companies
+ORDER BY industry;
+
+SELECT industry, company_name, revenue, employees 
+FROM fortune_companies
+GROUP BY industry;
+
+SELECT industry, company_name, revenue, employees,
+  CASE 
+      WHEN employees>2000 THEN "Large-sized_Business"
+      WHEN employees>1500 THEN "Medium-sized_Business"
+      WHEN employees<1500 THEN "Small-sized_Business"
+  ELSE "Other"
+END AS Business_Size
+FROM fortune_companies;
+
+SELECT industry, company_name, revenue, employees, avg_employee_tenure
+FROM fortune_companies
+ORDER BY revenue DESC;
+
+SELECT industry, company_name, MAX(revenue), employees, avg_employee_tenure
+FROM fortune_companies;
+
+SELECT industry, company_name, revenue, employees, MAX(avg_employee_tenure)
+FROM fortune_companies;
+
+SELECT industry, company_name, revenue, employees,
+  CASE 
+      WHEN employees>2000 
+      OR revenue>500.00 THEN "Large-sized_Business"
+      WHEN employees>1500 
+      OR revenue>38.5 THEN "Medium-sized_Business"
+      WHEN employees<1500 
+      OR revenue<38.5 THEN "Small-sized_Business"
+  ELSE "In-between"
+END AS Business_Size
+FROM fortune_companies
+ORDER BY industry;
+
+
+SELECT industry, company_name, revenue, employees,
+  CASE 
+      WHEN employees>2000 
+      AND revenue>500.00 THEN "Large-sized_Business"
+      WHEN employees>1500 
+      AND revenue>38.5 THEN "Medium-sized_Business"
+      WHEN employees<1500 
+      AND revenue<38.5 THEN "Small-sized_Business"
+  ELSE "In-between"
+END AS Business_Size
+FROM fortune_companies
+ORDER BY Business_Size desc;
+
+SELECT industry, company_name, revenue, employees, paid_time_off_days
+FROM fortune_companies
+GROUP BY industry
+HAVING paid_time_off_days>15
+ORDER BY paid_time_off_days;
